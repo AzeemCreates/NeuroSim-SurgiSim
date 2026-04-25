@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Suspense, lazy, useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -11,6 +11,8 @@ import {
 } from "@/components/ui/card";
 import { useAnimeEntrance } from "@/hooks/use-anime-entrance";
 import { frontendEnv } from "@/lib/config";
+
+const SurgerySimulator = lazy(() => import("@/components/SurgerySimulator.jsx"));
 
 type ProtectedSession = {
   sub: string;
@@ -121,21 +123,23 @@ function PhaseOneShell() {
 
   return (
     <>
-      <AuthenticatedScreen
-        isRequestingSession={isRequestingSession}
-        onLogout={() =>
-          logout({
-            logoutParams: {
-              returnTo: window.location.origin,
-            },
-          })
-        }
-        onOpenProtocol={() => setIsProtocolOpen(true)}
-        onRefreshSession={() => void loadProtectedSession()}
-        session={session}
-        sessionError={sessionError}
-        userLabel={user?.name ?? user?.email ?? user?.nickname ?? "Authenticated clinician"}
-      />
+      <Suspense fallback={<LoadingScreen />}>
+        <SurgerySimulator
+          isRequestingSession={isRequestingSession}
+          onLogout={() =>
+            logout({
+              logoutParams: {
+                returnTo: window.location.origin,
+              },
+            })
+          }
+          onOpenProtocol={() => setIsProtocolOpen(true)}
+          onRefreshSession={() => void loadProtectedSession()}
+          session={session}
+          sessionError={sessionError}
+          userLabel={user?.name ?? user?.email ?? user?.nickname ?? "Authenticated clinician"}
+        />
+      </Suspense>
       <ClinicalModal
         isOpen={isProtocolOpen}
         onClose={() => setIsProtocolOpen(false)}
@@ -252,12 +256,12 @@ function LandingScreen({
             <CardHeader data-entrance-item>
               <Badge className="w-fit">Phase 1 Secure Access</Badge>
               <CardTitle className="max-w-3xl text-4xl leading-tight md:text-6xl">
-                Clinical-grade access control for the neuro-simulation stack
+                Interactive neuro-simulation with protected 3D guidance
               </CardTitle>
               <CardDescription className="max-w-2xl text-base leading-8">
-                NeuroSim Web3 opens with Auth0-gated access, a protected Express
-                API surface, and Anime.js driven clinical UI motion that will
-                anchor the full simulator in later phases.
+                NeuroSim Web3 now pairs Auth0-gated access with a live 3D brain
+                interface and an authenticated AI mentor pipeline for surgical
+                guidance.
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-8">
@@ -274,13 +278,13 @@ function LandingScreen({
                 />
                 <InfoBlock
                   icon="waves"
-                  label="Motion System"
-                  text="Anime.js handles sliding panels and modal fades with a reusable React hook."
+                  label="3D Interaction"
+                  text="Anime.js driven camera and section animations layer clinical motion onto the simulator UI."
                 />
               </div>
               <div data-entrance-item className="flex flex-col gap-3 sm:flex-row">
                 <Button size="lg" onClick={onLogin}>
-                  Enter Simulator
+                  Enter 3D Simulator
                 </Button>
                 <Button size="lg" variant="outline" onClick={onOpenProtocol}>
                   View Protocol
@@ -294,9 +298,9 @@ function LandingScreen({
           <Card className="w-full bg-slate-950/50">
             <CardHeader data-entrance-item>
               <Badge variant="success" className="w-fit">
-                Hardened Endpoints
+                Active Pipeline
               </Badge>
-              <CardTitle className="text-3xl">Phase 1 route inventory</CardTitle>
+              <CardTitle className="text-3xl">Phase 3 route inventory</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               {protectedRoutes.map((route) => (
