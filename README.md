@@ -1,6 +1,14 @@
+🧠 SurgiSim (NeuroSim-Web3)
 An interactive, 3D medical education platform powered by AI, real-time voice streaming, and Solana Web3 certification.
 
 SurgiSim transforms medical learning by allowing users to interact with a 3D brain model, perform simulated "surgical" exploration, and receive real-time, voice-streamed guidance from an AI "Chief Neurosurgeon." Upon successfully completing their training modules, users are rewarded with an on-chain Certificate of Completion minted on the Solana blockchain.
+
+🚀 Live Demo & Pitch
+Video Demo: [Insert Link to your YouTube/Loom video here]
+
+Live Application: [Insert Link to deployed site, if applicable]
+
+Hackathon Track: [Insert the name of the bounty or track you are targeting]
 
 ✨ Key Features
 Interactive 3D Brain: Built with React Three Fiber, allowing users to rotate, zoom, and click specific brain lobes/regions to trigger surgical lessons.
@@ -104,3 +112,21 @@ npm run dev
 # In the frontend directory:
 npm run dev
 The application will be available at http://localhost:5173.
+
+🎮 How to Use SurgiSim
+Login: Click the login button to authenticate via Auth0.
+
+Explore: Use your mouse to rotate and zoom the 3D brain canvas.
+
+Learn: Click on any highlighted brain region (e.g., Frontal Lobe).
+
+Listen: Wait a moment as the AI Chief Neurosurgeon processes the action and streams the audio lesson directly to your browser.
+
+Certify: Once the module is complete, connect your Phantom Wallet (Devnet) and click "Claim Certificate" to mint your on-chain reward!
+
+🚀 Future Roadmap
+Implement multiplayer surgery rooms where multiple users can operate on the same 3D model.
+
+Add more complex Web3 rewards (e.g., NFT badges for different surgical specialties).
+
+Expand the AI context to include patient case studies, not just anatomy.
