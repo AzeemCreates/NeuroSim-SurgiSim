@@ -28,6 +28,7 @@ export const env = {
   auth0Audience: process.env.AUTH0_AUDIENCE ?? "",
   auth0IssuerBaseURL: process.env.AUTH0_ISSUER_BASE_URL ?? "",
   mongodbUri: process.env.MONGODB_URI ?? "",
+  mongoURI: process.env.MONGODB_URI ?? "",
   geminiApiKey: process.env.GEMINI_API_KEY ?? "",
   geminiModel: process.env.GEMINI_MODEL ?? "",
   elevenLabsApiKey: process.env.ELEVENLABS_API_KEY ?? "",
@@ -41,6 +42,10 @@ export const env = {
   snowflakeSchema: process.env.SNOWFLAKE_SCHEMA ?? "",
   snowflakeWarehouse: process.env.SNOWFLAKE_WAREHOUSE ?? "",
   snowflakeRole: process.env.SNOWFLAKE_ROLE ?? "",
+  snowflakeUser:
+    process.env.SNOWFLAKE_USER ?? process.env.SNOWFLAKE_USERNAME ?? "",
+  snowflakeUsername:
+    process.env.SNOWFLAKE_USERNAME ?? process.env.SNOWFLAKE_USER ?? "",
   snowflakeApiUrl:
     process.env.SNOWFLAKE_API_URL ??
     (process.env.SNOWFLAKE_ACCOUNT
@@ -53,6 +58,7 @@ export const env = {
     process.env.SNOWFLAKE_TOKEN,
     process.env.SNOWFLAKE_PASSWORD,
   ),
+  snowflakePassword: process.env.SNOWFLAKE_PASSWORD ?? "",
   snowflakeTokenType: process.env.SNOWFLAKE_TOKEN_TYPE ?? "",
   snowflakeRagTable: process.env.SNOWFLAKE_RAG_TABLE ?? "",
   snowflakeRagQuery: process.env.SNOWFLAKE_RAG_QUERY ?? "",
