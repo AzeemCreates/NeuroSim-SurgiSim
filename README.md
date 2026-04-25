@@ -1,18 +1,106 @@
-# NeuroSim Web3
+An interactive, 3D medical education platform powered by AI, real-time voice streaming, and Solana Web3 certification.
 
-Phase 1 scaffold for a secure neurotech learning platform.
+SurgiSim transforms medical learning by allowing users to interact with a 3D brain model, perform simulated "surgical" exploration, and receive real-time, voice-streamed guidance from an AI "Chief Neurosurgeon." Upon successfully completing their training modules, users are rewarded with an on-chain Certificate of Completion minted on the Solana blockchain.
 
-## Structure
+✨ Key Features
+Interactive 3D Brain: Built with React Three Fiber, allowing users to rotate, zoom, and click specific brain lobes/regions to trigger surgical lessons.
 
-- `frontend`: Vite + React + TypeScript + Tailwind + shadcn-style UI primitives + Anime.js
-- `backend`: Express API with CORS, dotenv, and Auth0 JWT protection for AI endpoints
+AI Chief Neurosurgeon: Powered by Google's Gemini AI and Snowflake RAG context to provide highly accurate, medical-grade educational responses.
 
-## Environment
+Real-Time Voice Streaming: Integrates ElevenLabs API to immediately stream the AI's response as realistic, low-latency audio.
 
-Copy `.env.example` to `.env` in the project root and fill in the Auth0 values before running the app.
+Secure User Authentication: Fully protected routes and frontend UI managed by Auth0.
 
-## Commands
+Web3 Certification: Connects to Phantom Wallet via Solana Wallet Adapter to mint verifiable "Certificates of Completion" on the Solana Devnet.
 
-- `npm install`
-- `npm run dev:frontend`
-- `npm run dev:backend`
+🛠️ Tech Stack
+Frontend:
+
+React 18 + Vite
+
+Three.js & React Three Fiber (@react-three/fiber, @react-three/drei)
+
+Auth0 (@auth0/auth0-react)
+
+Solana Wallet Adapter (@solana/wallet-adapter-react)
+
+TailwindCSS / Anime.js (UI & Animations)
+
+Backend:
+
+Node.js & Express
+
+MongoDB (Mongoose)
+
+Snowflake (Data/RAG Context)
+
+Gemini AI (@google/generative-ai)
+
+ElevenLabs API
+
+Solana Web3 (@solana/web3.js)
+
+⚙️ Local Setup & Installation
+1. Clone the Repository
+Bash
+git clone https://github.com/your-username/NeuroSim-Web3.git
+cd NeuroSim-Web3
+2. Install Dependencies
+You will need to install the Node modules for both the frontend and backend.
+
+Bash
+# Install backend dependencies
+cd backend
+npm install
+
+# Install frontend dependencies
+cd ../frontend
+npm install
+3. Environment Variables
+You must create two .env files for this project to run locally.
+
+Backend (backend/.env):
+
+Code snippet
+# Database & Cloud
+MONGODB_URI="your_mongodb_connection_string"
+SNOWFLAKE_ACCOUNT="your_snowflake_account"
+SNOWFLAKE_USER="your_snowflake_user"
+SNOWFLAKE_PASSWORD="your_snowflake_password"
+
+# AI & Audio
+GEMINI_API_KEY="your_gemini_key"
+ELEVENLABS_API_KEY="your_elevenlabs_key"
+
+# Authentication (Auth0)
+AUTH0_ISSUER_BASE_URL="https://your_domain.us.auth0.com"
+AUTH0_AUDIENCE="https://neuro-api"
+
+# Web3 (Solana)
+SOLANA_CERTIFICATE_SECRET="your_burner_wallet_private_key"
+Frontend (frontend/.env):
+
+Code snippet
+# Authentication (Auth0)
+VITE_AUTH0_DOMAIN="your_domain.us.auth0.com"
+VITE_AUTH0_CLIENT_ID="your_auth0_client_id"
+VITE_AUTH0_AUDIENCE="https://neuro-api"
+4. Solana Devnet Funding
+This project uses the Solana Devnet, meaning no real funds are used. To ensure the backend burner wallet can mint certificates:
+
+Copy the public address of your SOLANA_CERTIFICATE_SECRET wallet.
+
+Go to the Solana Faucet.
+
+Airdrop 1 Test SOL to your wallet address.
+
+5. Run the Application
+Start both the frontend and backend development servers.
+
+Bash
+# In the backend directory:
+npm run dev
+
+# In the frontend directory:
+npm run dev
+The application will be available at http://localhost:5173.
